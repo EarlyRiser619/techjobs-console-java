@@ -61,9 +61,12 @@ public class TechJobs {
                 String searchTerm = in.nextLine();
 
                 if (searchField.equals("all")) {
-                    System.out.println("Search All has not yet been implemented.");
+                    printJobs(JobData.findByValue(searchTerm.toUpperCase()));
+
+
+
                 } else {
-                    printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
+                    printJobs(JobData.findByColumnAndValue(searchField, searchTerm.toUpperCase()));
                 }
             }
         }
@@ -123,4 +126,6 @@ public class TechJobs {
             }
         }
     }
+
+
 }

@@ -21,6 +21,26 @@ public class JobData {
 
     private static ArrayList<HashMap<String, String>> allJobs;
 
+    public static ArrayList<HashMap<String, String>> findByValue(String value) {
+
+        loadData();
+
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+
+        for (HashMap<String, String> jobPost : allJobs) {
+                for (String columnPost : jobPost.keySet()) {
+                    String columnValue = jobPost.get(columnPost).toUpperCase();
+
+                    /*String aValue = jobPost.get(value); */
+
+                    if (columnValue.contains(value)) {
+                        jobs.add(jobPost);
+                    }
+                }
+        }
+        return jobs;
+    }
+
     /**
      * Fetch list of all values from loaded data,
      * without duplicates, for a given column.
@@ -36,7 +56,7 @@ public class JobData {
         ArrayList<String> values = new ArrayList<>();
 
         for (HashMap<String, String> row : allJobs) {
-            String aValue = row.get(field);
+            String aValue = row.get(field).toUpperCase();
 
             if (!values.contains(aValue)) {
                 values.add(aValue);
@@ -74,7 +94,7 @@ public class JobData {
 
         for (HashMap<String, String> row : allJobs) {
 
-            String aValue = row.get(column);
+            String aValue = row.get(column).toUpperCase();
 
             if (aValue.contains(value)) {
                 jobs.add(row);
